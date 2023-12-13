@@ -1,6 +1,5 @@
 #ifndef NOTE_H
 #define NOTE_H
-#define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
 

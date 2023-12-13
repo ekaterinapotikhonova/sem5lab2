@@ -1,16 +1,34 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "note.h"
 #include <cstring>
 
 NOTE::NOTE(const char* _firstName, const char* _lastName, const char* _phoneNumber, int day, int month, int year)
     : firstName(nullptr), lastName(nullptr), phoneNumber(nullptr) {
-    firstName = new char[strlen(_firstName) + 1];
-    strcpy(firstName, _firstName);
+    std::cout << "Constructor called for a new note" << std::endl;
 
-    lastName = new char[strlen(_lastName) + 1];
-    strcpy(lastName, _lastName);
+    // Проверка на успешность выделения памяти
+    try {
+        firstName = new char[strlen(_firstName) + 1];
+        strcpy(firstName, _firstName);
 
-    phoneNumber = new char[strlen(_phoneNumber) + 1];
-    strcpy(phoneNumber, _phoneNumber);
+        lastName = new char[strlen(_lastName) + 1];
+        strcpy(lastName, _lastName);
+
+        phoneNumber = new char[strlen(_phoneNumber) + 1];
+        strcpy(phoneNumber, _phoneNumber);
+    }
+    catch (std::bad_alloc& e) {
+        // Обработка ошибки выделения памяти
+        std::cerr << "Memory allocation error: " << e.what() << std::endl;
+
+        // Освобождение ранее выделенной памяти (если что-то было выделено)
+        delete[] firstName;
+        delete[] lastName;
+        delete[] phoneNumber;
+
+        // Перебрасываем исключение дальше
+        throw;
+    }
 
     birthday[0] = day;
     birthday[1] = month;
@@ -18,9 +36,17 @@ NOTE::NOTE(const char* _firstName, const char* _lastName, const char* _phoneNumb
 }
 
 NOTE::~NOTE() {
-    delete[] firstName;
-    delete[] lastName;
-    delete[] phoneNumber;
+    std::cout << "Destructor called for " << firstName << " " << lastName << std::endl;
+
+    try {
+        delete[] firstName;
+        delete[] lastName;
+        delete[] phoneNumber;
+    }
+    catch (std::exception& e) {
+        // Обработка ошибки при освобождении памяти
+        std::cerr << "Error in destructor: " << e.what() << std::endl;
+    }
 }
 
 const char* NOTE::getFirstName() const {
