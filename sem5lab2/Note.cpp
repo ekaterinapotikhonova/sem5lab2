@@ -1,8 +1,6 @@
 #include "note.h"
 #include <cstring>
 
-// Реализация методов класса NOTE
-
 NOTE::NOTE(const char* _firstName, const char* _lastName, const char* _phoneNumber, int day, int month, int year)
     : firstName(nullptr), lastName(nullptr), phoneNumber(nullptr) {
     firstName = new char[strlen(_firstName) + 1];
