@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <cctype>
+//#include <cctype>
 #include <string>
 
 bool isVowel(char c) {
@@ -161,11 +161,10 @@ int main() {
                     // Флаг, указывающий, что предыдущий символ - не буква
                     bool prevNotAlpha = true;
 
-                    // Заменяем первые буквы слов, начинающихся с гласной буквы, на прописные
                     for (std::size_t i = 0; i < text.length(); ++i) {
-                        if (std::isalpha(text[i])) {
+                        if ((text[i] >= 'a' && text[i] <= 'z') || (text[i] >= 'A' && text[i] <= 'Z')) {
                             if (prevNotAlpha && isVowel(text[i])) {
-                                text[i] = std::toupper(text[i]);
+                                text[i] = (text[i] >= 'a' && text[i] <= 'z') ? (text[i] - 'a' + 'A') : text[i];
                             }
                             prevNotAlpha = false;
                         }

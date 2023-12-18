@@ -143,9 +143,7 @@
     <ClCompile Include="Note.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Employee.h" />
     <ClInclude Include="Note.h" />
-    <ClInclude Include="Person.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="a.txt" />
