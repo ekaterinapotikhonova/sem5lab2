@@ -23,7 +23,7 @@ public:
     friend std::istream& operator>>(std::istream& is, NOTE& note);
 
     void editNote();
-    static void insertSorted(NOTE** phoneBook, int& numNotes, NOTE* newNote);
+    static void insertSorted(NOTE** noteBook, int& numNotes, NOTE* newNote);
 };
 
 #endif // NOTE_H

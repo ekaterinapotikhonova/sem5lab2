@@ -13,7 +13,7 @@ bool isVowel(char c) {
 
 int main() {
     const int MAX_NOTES = 100;
-    NOTE** phoneBook = new NOTE * [MAX_NOTES];
+    NOTE** noteBook = new NOTE * [MAX_NOTES];
     int numNotes = 0;
 
     int exercise;
@@ -43,7 +43,7 @@ int main() {
                     if (numNotes < MAX_NOTES) {
                         NOTE* newNote = new NOTE("", "", "", 0, 0, 0);
                         std::cin >> *newNote;
-                        NOTE::insertSorted(phoneBook, numNotes, newNote);
+                        NOTE::insertSorted(noteBook, numNotes, newNote);
                         std::cout << "Note added successfully.\n";
                     }
                     else {
@@ -59,8 +59,8 @@ int main() {
 
                     bool found = false;
                     for (int i = 0; i < numNotes; ++i) {
-                        if (phoneBook[i]->getBirthday()[1] == targetMonth) {
-                            std::cout << *phoneBook[i] << std::endl;
+                        if (noteBook[i]->getBirthday()[1] == targetMonth) {
+                            std::cout << *noteBook[i] << std::endl;
                             found = true;
                         }
                     }
@@ -75,7 +75,7 @@ int main() {
                     if (numNotes > 0) {
                         std::cout << "\nAll Notes:\n";
                         for (int i = 0; i < numNotes; ++i) {
-                            std::cout << *phoneBook[i] << std::endl;
+                            std::cout << *noteBook[i] << std::endl;
                         }
                     }
                     else {
@@ -89,7 +89,7 @@ int main() {
                     std::cin >> editIndex;
 
                     if (editIndex >= 1 && editIndex <= numNotes) {
-                        phoneBook[editIndex - 1]->editNote();
+                        noteBook[editIndex - 1]->editNote();
                         std::cout << "Note edited successfully.\n";
                     }
                     else {
@@ -103,9 +103,9 @@ int main() {
                     std::cin >> deleteIndex;
 
                     if (deleteIndex >= 1 && deleteIndex <= numNotes) {
-                        delete phoneBook[deleteIndex - 1];
+                        delete noteBook[deleteIndex - 1];
                         for (int i = deleteIndex - 1; i < numNotes - 1; ++i) {
-                            phoneBook[i] = phoneBook[i + 1];
+                            noteBook[i] = noteBook[i + 1];
                         }
                         --numNotes;
                         std::cout << "Note deleted successfully.\n";
@@ -125,9 +125,9 @@ int main() {
 
             // Clean up memory
             for (int i = 0; i < numNotes; ++i) {
-                delete phoneBook[i];
+                delete noteBook[i];
             }
-            delete[] phoneBook;
+            delete[] noteBook;
 
             return 0;
         }

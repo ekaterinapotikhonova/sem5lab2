@@ -110,21 +110,21 @@ void NOTE::editNote() {
     std::cin >> *this;
 }
 
-void NOTE::insertSorted(NOTE** phoneBook, int& numNotes, NOTE* newNote) {
+void NOTE::insertSorted(NOTE** noteBook, int& numNotes, NOTE* newNote) {
     int insertIndex = numNotes;
     for (int i = 0; i < numNotes; ++i) {
-        if (strcmp(newNote->getLastName(), phoneBook[i]->getLastName()) < 0 ||
-            (strcmp(newNote->getLastName(), phoneBook[i]->getLastName()) == 0 &&
-                strcmp(newNote->getFirstName(), phoneBook[i]->getFirstName()) < 0)) {
+        if (strcmp(newNote->getLastName(), noteBook[i]->getLastName()) < 0 ||
+            (strcmp(newNote->getLastName(), noteBook[i]->getLastName()) == 0 &&
+                strcmp(newNote->getFirstName(), noteBook[i]->getFirstName()) < 0)) {
             insertIndex = i;
             break;
         }
     }
 
     for (int i = numNotes; i > insertIndex; --i) {
-        phoneBook[i] = phoneBook[i - 1];
+        noteBook[i] = noteBook[i - 1];
     }
 
-    phoneBook[insertIndex] = newNote;
+    noteBook[insertIndex] = newNote;
     ++numNotes;
 }
